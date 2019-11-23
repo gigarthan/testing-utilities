@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen m-3">
       <Header siteTitle={data.site.siteMetadata.title} />
       <div>
         <main>{children}</main>

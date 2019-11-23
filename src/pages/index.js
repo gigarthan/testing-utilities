@@ -45,6 +45,9 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Random Text Generator" />
+      <h1 className="text-lg font-bold text-center">
+        Random Text Generator with Movie Dialogues
+      </h1>
       <div className="p-4 w-full flex ">
         <div className="container mx-auto border-2 border-b-4 border-r-4 border-solid border-black p-8">
           <div className="flex w-full justify-end">
