@@ -59,9 +59,9 @@ const IndexPage = () => {
               ""
             )}
           </div>
-          <div className="flex">
-            <div className="w-1/4 my-3 flex flex-wrap flex-col ">
-              <div>
+          <div className="w-full flex flex-wrap">
+            <div className="lg:w-1/4 w-full my-3 flex flex-wrap flex-col ">
+              <div className="w-full">
                 <input
                   className="w-full h-10 p-2 bg-gray-300 outline-none rounded border-b-2 border-gray-400 focus:border-black border-black border-solid "
                   placeholder="String Length"
@@ -78,17 +78,17 @@ const IndexPage = () => {
                 </button>
               </div>
             </div>
-            <div className="w-3/4 m-3">
+            <div className="w-full lg:w-3/4 my-3">
               <textarea
                 value={randomString}
                 onChange={e => setRandomString(e.target.value)}
-                className="mx-3 rounded  h-64 max-h-64 min-h-64 bg-gray-300 p-2 w-full outline-none resize-none border-b-2 border-gray-400 focus:border-black border-black border-solid"
+                className="lg:mx-3 rounded  h-64 max-h-64 min-h-64 bg-gray-300 p-2 w-full outline-none resize-none border-b-2 border-gray-400 focus:border-black border-black border-solid"
               ></textarea>
             </div>
           </div>
           <div className="flex">
             <div className="w-1/4"></div>
-            <div className="w-3/4 mx-3 pl-3">
+            <div className="w-full lg:w-3/4 mx-3 pl-3">
               <button
                 onClick={() => copyToClipboard(randomString)}
                 className="border-2 border-black  p-2 rounded text-xs text-black hover:bg-black hover:text-white"
