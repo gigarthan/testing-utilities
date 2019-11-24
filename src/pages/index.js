@@ -1,21 +1,25 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 import "../css/global.css"
 
 import StringJson from "../strings.json"
 
-const movieStrings = Object.values(StringJson)
+function getStrings() {
+  const movieStrings = Object.values(StringJson)
 
-let str = ""
+  movieStrings.sort(() => Math.random() - 0.5)
 
-for (const value of movieStrings) {
-  const allStrings = value.reduce((pv, v) => v + pv, "")
-  str += allStrings
+  let str = ""
+
+  for (const value of movieStrings) {
+    const allStrings = value.reduce((pv, v) => v + pv, "")
+    str += allStrings
+  }
+
+  return str
 }
 
 const copyToClipboard = str => {
@@ -38,8 +42,14 @@ const IndexPage = () => {
     /**
      * @todo update random mechanism
      */
-    const random = str.slice(0, stringLength || 100)
-    setRandomString(random)
+
+    const length = parseInt(stringLength)
+
+    if (length !== NaN) {
+      const str = getStrings()
+      const random = str.slice(0, length)
+      setRandomString(random)
+    }
   }
 
   return (
@@ -50,15 +60,6 @@ const IndexPage = () => {
       </h1>
       <div className="p-4 w-full flex ">
         <div className="container mx-auto border-2 border-b-4 border-r-4 border-solid border-black p-8">
-          <div className="flex w-full justify-end">
-            {randomString.length ? (
-              <div className="bg-gray-300 p-2 rounded">
-                {randomString.length} Characters
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
           <div className="w-full flex flex-wrap">
             <div className="lg:w-1/4 w-full my-3 flex flex-wrap flex-col ">
               <div className="w-full">
@@ -67,6 +68,7 @@ const IndexPage = () => {
                   placeholder="String Length"
                   value={stringLength}
                   onChange={e => setStringLength(e.target.value)}
+                  type={"number"}
                 />
               </div>
               <div className="py-4">
@@ -88,13 +90,24 @@ const IndexPage = () => {
           </div>
           <div className="flex">
             <div className="w-1/4"></div>
-            <div className="w-full lg:w-3/4 mx-3 pl-3">
+            <div className="w-full lg:w-2/4 mx-3 pl-3">
               <button
                 onClick={() => copyToClipboard(randomString)}
                 className="border-2 border-black  p-2 rounded text-xs text-black hover:bg-black hover:text-white"
               >
                 click to copy the string
               </button>
+            </div>
+            <div className="w-full lg:w-1/4">
+              <div>
+                {randomString.length ? (
+                  <div className="bg-gray-300 p-2 rounded text-right">
+                    {randomString.length} Characters
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
         </div>
